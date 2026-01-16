@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AlertPanel from "@/components/AlertPanel";
 import DeviceStatusCard from "@/components/DeviceStatusCard";
+import DeviceControlPanel from "@/components/DeviceControlPanel";
 import HistoryTable from "@/components/HistoryTable";
 import SerialConnectButton from "@/components/SerialConnectButton";
 import TelemetryPanel from "@/components/TelemetryPanel";
@@ -44,6 +45,7 @@ export default function Dashboard() {
           <DeviceStatusCard />
           <AlertPanel />
           <TelemetryPanel />
+          <DeviceControlPanel />
         </div>
         <div className="md:col-span-2 space-y-4">
           <Card>

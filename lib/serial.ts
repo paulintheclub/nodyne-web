@@ -82,9 +82,29 @@ async function readLoop() {
   reader.releaseLock();
 }
 
+export async function sendCommand(command: string) {
+  if (!port?.writable) {
+    console.error('Port is not writable. Please connect to device first.');
+    return false;
+  }
+
+  try {
+    const writer = port.writable.getWriter();
+    const encoder = new TextEncoder();
+    const data = encoder.encode(command + '\n');
+    await writer.write(data);
+    writer.releaseLock();
+    console.log('Command sent:', command);
+    return true;
+  } catch (error) {
+    console.error('Error sending command:', error);
+    return false;
+  }
+}
+
 export async function disconnectSerial() {
   keepReading = false;
-  
+
   if (reader) {
     try {
       await reader.cancel();
@@ -110,6 +130,6 @@ export async function disconnectSerial() {
     }
     port = undefined;
   }
-  
+
   useDeviceStore.getState().disconnect();
 }
