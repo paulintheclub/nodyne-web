@@ -19,10 +19,10 @@ const HistoryTable = () => {
 
   const getBadgeVariant = (type: HistoryEvent['type']) => {
     switch (type) {
-      case 'Warning':
-        return 'default';
       case 'Alert':
         return 'destructive';
+      case 'System':
+        return 'default';
       default:
         return 'secondary';
     }
